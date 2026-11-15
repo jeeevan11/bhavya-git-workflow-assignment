@@ -1,0 +1,130 @@
+GIT COMMANDS USED IN THIS ASSIGNMENT
+Name    : Bhavya Anantkumar Patel
+Roll No : 2024eb02507
+Repo    : https://github.com/jeeevan11/bhavya-git-workflow-assignment
+======================================================================
+
+STEP 1 - LOCAL REPOSITORY SETUP
+----------------------------------------------------------------------
+git init -b main
+    Creates a new, empty Git repository in the current folder and names
+    the first branch "main".
+
+git config user.name "Bhavya Anantkumar Patel"
+    Sets the author name recorded in commits for this repository only.
+
+git config user.email "2024eb02507@online.bits-pilani.ac.in"
+    Sets the author email recorded in commits for this repository only.
+
+git status
+    Shows the current branch and which files are untracked, modified or
+    staged for the next commit.
+
+STEP 2 - GIT WORKFLOW (COMMIT, BRANCH, MERGE, HISTORY)
+----------------------------------------------------------------------
+git add index.html about.html
+    Stages the two HTML files so they are included in the next commit.
+
+git commit -m "Initial commit: add index.html and about.html"
+    Records the staged files as the first snapshot (initial state) of the
+    project with a descriptive message.
+
+git diff
+    Shows the line-by-line changes in the working directory that have not
+    been staged yet (used to review edits before committing).
+
+git add index.html
+git commit -m "Update index.html: add last updated line"
+    Stages the modified index.html and records it as the second commit.
+
+git branch feature
+    Creates a new branch named "feature" pointing at the current commit.
+
+git branch
+    Lists local branches; the asterisk (*) marks the current branch.
+
+git switch feature
+    Moves HEAD to the "feature" branch so new commits go there.
+
+git add about.html
+git commit -m "Feature: add contact section to about.html"
+    Stages and commits the about.html change on the feature branch only.
+
+git switch main
+    Switches back to the main branch.
+
+git merge --no-ff feature -m "Merge branch feature into main"
+    Merges the feature branch into main; --no-ff always creates a merge
+    commit so the branch activity stays visible in the history.
+
+git log --oneline --graph --all --decorate
+    Displays the full commit history of all branches as a compact graph,
+    showing where the feature branch split off and merged back.
+
+STEP 3 - .GITIGNORE
+----------------------------------------------------------------------
+cat .gitignore
+    Prints the ignore rules: "*.log" (all log files) and "temp/" (folder).
+
+git status --ignored
+    Shows tracked/untracked files and also lists ignored files, proving
+    error.log and temp/ are excluded.
+
+git add .gitignore
+git commit -m "Add .gitignore to ignore .log files and temp/ folder"
+    Stages and commits the .gitignore file so the rules are shared.
+
+git check-ignore -v error.log temp/scratch.txt
+    Confirms the files are ignored and shows which .gitignore rule
+    (file:line:pattern) matches each one.
+
+STEP 4 - UNDO OPERATION
+----------------------------------------------------------------------
+git add index.html
+git commit -m "Add temporary footer to index.html"
+    Makes the additional commit that will be undone.
+
+git log --oneline -3
+    Shows the last three commits to confirm the extra commit exists.
+
+git revert --no-edit HEAD
+    Undoes the last commit by creating a new commit that reverses its
+    changes. History is preserved, so it is safe for shared/pushed repos.
+
+git show --stat HEAD
+    Shows details of the latest (revert) commit and which file it changed.
+
+STEP 5 - GITHUB INTEGRATION
+----------------------------------------------------------------------
+gh repo create bhavya-git-workflow-assignment --public --description "..."
+    Uses the GitHub CLI to create a new, empty PUBLIC repository on GitHub
+    (created only after the local repository already existed).
+
+git remote add origin git@github.com:jeeevan11/bhavya-git-workflow-assignment.git
+    Links the local repository to the GitHub repository under the name
+    "origin".
+
+git remote -v
+    Lists configured remotes and their fetch/push URLs to verify the link.
+
+git push -u origin main
+    Uploads the main branch and its full history to GitHub; -u sets
+    origin/main as the upstream so later "git push" needs no arguments.
+
+git push -u origin feature
+    Uploads the feature branch too, so the branch is visible on GitHub.
+
+git branch -a
+    Lists local and remote-tracking branches to confirm both were pushed.
+
+STEP 6 - COMMAND DOCUMENTATION FILE
+----------------------------------------------------------------------
+git add git_commands.txt
+git commit -m "Add git_commands.txt documenting all Git commands used"
+    Stages and commits this documentation file.
+
+git push
+    Pushes the new commit to the tracked upstream branch (origin/main).
+
+git log --oneline --graph --all --decorate
+    Shows the final complete history, matching the history on GitHub.
